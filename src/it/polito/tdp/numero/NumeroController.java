@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.numero.model.NumeroModel;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -22,6 +23,9 @@ public class NumeroController {
 
 	public void setModel(NumeroModel model) {
 		this.model = model;
+		
+		txtRimasti.textProperty().bind(Bindings.convert(model.tentativiFattiProperty()));
+		
 	}
 
 	//CONTROLLER
@@ -60,7 +64,7 @@ public class NumeroController {
     	this.boxControlloTentativo.setDisable(false); //abilito modifica con false
     	
     	this.txtMessaggi.clear();//PULISCO DA MESSAGGI PRECEDENTI
-    	this.txtRimasti.setText(Integer.toString(this.model.getTMAX()));
+    	//this.txtRimasti.setText(Integer.toString(this.model.getTMAX()));
     	
     	//INIZIO DI UNA NUOVA PARTITA
     	model.newGame();
@@ -83,7 +87,7 @@ public class NumeroController {
     	
     	//Controllo se range è giusto (fatto in Model e qui solo richiamato)
     	if(!this.model.tentativoValido(tentativo)) {
-    		txtMessaggi.appendText("Range Non Valido");
+    		txtMessaggi.appendText("Tentativo Non Valido\n");
     		return;
     	}
     	
@@ -103,7 +107,7 @@ public class NumeroController {
     
     	
     	//aggiorno interfaccia con num tentativi
-    	this.txtRimasti.setText(Integer.toString(this.model.getTMAX()-this.model.getTentativiFatti()));
+    	//this.txtRimasti.setText(Integer.toString(this.model.getTentativiFatti());
     	
     	if(!model.isInGioco()) {
     		if(risultato!=0) {

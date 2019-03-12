@@ -23,7 +23,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
 			//CONTROLLER
-			NumeroController controller = loader.getController();
+			NumeroController controller = (NumeroController)loader.getController();
 			
 			//MODELLO
 			NumeroModel model = new NumeroModel();//CREAZIONE DEL MODELLO
